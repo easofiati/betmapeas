@@ -1,0 +1,82 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    command: python main.py
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/betmapeas
+    depends_on:
+      - db
+    networks:
+      - betmapnet
+
+  frontend:
+    build:
+      context: ./frontend
+    command: npm run dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - backend
+    networks:
+      - betmapnet
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: betmapeas
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./backend/betmapeas_database_schema.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - betmapnet
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@betmapeas.local
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    volumes:
+      - ./.docker/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - db
+    networks:
+      - betmapnet
+
+  nginx:
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - betmapnet
+
+volumes:
+  pgdata:
+
+networks:
+  betmapnet:
+    driver: bridge 

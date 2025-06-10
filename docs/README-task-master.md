@@ -643,3 +643,7 @@ Can you analyze the complexity of our tasks to help me understand which ones nee
 ```
 Can you show me the complexity report in a more readable format?
 ```
+
+# README Task Master
+
+> Nota: O ambiente Docker Compose do projeto inclui um container pgAdmin (porta 5050) para facilitar a administração do banco PostgreSQL. Use as credenciais padrão informadas no README principal para acessar e gerenciar os dados.

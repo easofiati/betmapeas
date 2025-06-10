@@ -124,3 +124,21 @@ app/
 5. Adicionar painel administrativo (acesso via flag `is_admin`)
 6. Containerizar o projeto com Docker Compose
 7. Configurar CI/CD e testes
+
+## 🗄️ Acesso ao Banco de Dados via pgAdmin
+
+O ambiente Docker Compose inclui um container pgAdmin para facilitar a administração e visualização dos dados do PostgreSQL.
+
+- Acesse o pgAdmin em: http://localhost:5050
+- Login padrão:
+  - **Email:** admin@betmapeas.local
+  - **Senha:** admin123
+- Para conectar ao banco:
+  - Host: db
+  - Usuário: postgres
+  - Senha: postgres
+  - Database: betmapeas
+
+A pasta `.docker/pgadmin` garante persistência das configurações do pgAdmin.
+
+---

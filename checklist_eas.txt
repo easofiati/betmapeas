@@ -40,5 +40,7 @@ Cursor
 6.2 - Peça ao task-master para gerar as subtarefas de cada tarefa, analizar a complexidade e ordená-las.
 
 Cursor
-7. 
+7. Organizar a estrutura de pastas e arquivos.
+
+
 
