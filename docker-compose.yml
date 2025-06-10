@@ -18,7 +18,20 @@ services:
   frontend:
     build:
       context: ./frontend
-    command: npm run dev
+    # Produção: serve build estático via Nginx
+    container_name: frontend-prod
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - betmapnet
+
+  frontend-dev:
+    build:
+      context: ./frontend
+      target: builder
+    command: npm run dev -- --host
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -30,6 +43,7 @@ services:
       - backend
     networks:
       - betmapnet
+    # Para desenvolvimento, suba este serviço
 
   db:
     image: postgres:15

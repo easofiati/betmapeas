@@ -14,6 +14,7 @@ alwaysApply: true
   2. `database`
   3. `frontend`
 - Orquestração pelo **Docker Compose**
+- Higiene de Imagens: sempre que uma nova imagem Docker for gerada e validada, remover a imagem anterior para evitar acúmulo de camadas obsoletas e consumo desnecessário de recursos.
 
 ## 2. Gerência de Configurações
 - Qualquer dado sensível ou variável de ambiente **fica no arquivo** `.env`

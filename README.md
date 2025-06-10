@@ -141,4 +141,22 @@ O ambiente Docker Compose inclui um container pgAdmin para facilitar a administr
 
 A pasta `.docker/pgadmin` garante persistência das configurações do pgAdmin.
 
+## 🖥️ Como rodar o frontend
+
+- **Desenvolvimento (hot-reload):**
+  - Suba o serviço `frontend-dev`:
+    ```bash
+    docker compose up frontend-dev
+    ```
+  - Acesse em: http://localhost:5173
+
+- **Produção (build estático):**
+  - Suba o serviço `frontend` (Nginx):
+    ```bash
+    docker compose up frontend
+    ```
+  - Acesse em: http://localhost:3000
+
+- O Nginx faz proxy para o backend em `/api` e serve o frontend estático nas demais rotas.
+
 ---
