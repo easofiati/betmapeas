@@ -4,7 +4,6 @@ services:
   backend:
     build:
       context: ./backend
-    command: python main.py
     volumes:
       - ./backend:/app
     environment:
@@ -90,8 +89,25 @@ services:
     networks:
       - betmapnet
 
+  db-backup:
+    image: postgres:15
+    depends_on:
+      - db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pgbackups:/backups
+    entrypoint: ["/bin/sh", "-c"]
+    command: |
+      "echo '0 3 * * * pg_dump -U $POSTGRES_USER -h db $POSTGRES_DB | gzip > /backups/backup-$(date +\%Y-\%m-\%d).sql.gz' > /etc/crontabs/root && crond -f -L /dev/stdout"
+    networks:
+      - betmapnet
+
 volumes:
   pgdata:
+  pgbackups:
 
 networks:
   betmapnet:
