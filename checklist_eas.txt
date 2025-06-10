@@ -32,14 +32,13 @@ Lovable, Firebase, Bolt, Genspark, Manus
 Sempre separar em vários arquivos, que é melhorar para trabalhar, nesse caso o Lovable faz isso muito bem.
 
 Cursor (fazer rules no Claude ou Chatgpt)
-6. Add rules
+5. Add rules
 
 Cursor
-5. task-master init
-5.1 - Baseado no arquivo @PRD.txt peça para o task-master gerar as tarefas.
-5.2 - Peça ao task-master para gerar as subtarefas de cada tarefa, analizar a complexidade e ordená-las.
+6. task-master init
+6.1 - Baseado no arquivo @PRD.txt peça para o task-master gerar as tarefas.
+6.2 - Peça ao task-master para gerar as subtarefas de cada tarefa, analizar a complexidade e ordená-las.
 
-
-
-
+Cursor
+7. 
 
