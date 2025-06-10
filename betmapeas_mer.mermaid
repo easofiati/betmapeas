@@ -1,0 +1,214 @@
+erDiagram
+    usuarios {
+        UUID id PK
+        VARCHAR nome
+        VARCHAR email UK
+        VARCHAR senha_hash
+        BOOLEAN eh_ativo
+        BOOLEAN eh_verificado
+        BOOLEAN eh_admin
+        VARCHAR timezone
+        VARCHAR moeda
+        VARCHAR idioma
+        JSONB preferencias_notificacao
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    casas_apostas {
+        UUID id PK
+        UUID usuario_id FK
+        VARCHAR nome
+        VARCHAR tipo
+        DECIMAL comissao_percentual
+        DECIMAL saldo_inicial
+        DECIMAL saldo_atual
+        VARCHAR moeda
+        VARCHAR site_url
+        BOOLEAN eh_ativo
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    paises {
+        UUID id PK
+        VARCHAR nome UK
+        VARCHAR codigo_iso UK
+        TIMESTAMP criado_em
+    }
+
+    categorias {
+        UUID id PK
+        VARCHAR nome UK
+        TEXT descricao
+        VARCHAR icone_url
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    campeonatos {
+        UUID id PK
+        VARCHAR nome
+        UUID pais_id FK
+        UUID categoria_id FK
+        BOOLEAN eh_ativo
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    mercados {
+        UUID id PK
+        VARCHAR nome UK
+        TEXT descricao
+        UUID categoria_id FK
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    tipsters {
+        UUID id PK
+        UUID usuario_id FK
+        VARCHAR nome
+        TEXT descricao
+        VARCHAR site_url
+        DECIMAL valor_assinatura_mensal
+        DECIMAL stake_padrao
+        DECIMAL unidade_base
+        VARCHAR moeda
+        BOOLEAN eh_ativo
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    historico_tipster_config {
+        UUID id PK
+        UUID tipster_id FK
+        DECIMAL valor_assinatura
+        DECIMAL stake_padrao
+        DECIMAL unidade_base
+        DATE data_inicio
+        DATE data_fim
+        TIMESTAMP criado_em
+    }
+
+    apostas {
+        UUID id PK
+        UUID usuario_id FK
+        UUID casa_aposta_id FK
+        UUID tipster_id FK
+        ENUM tipo_combinacao
+        ENUM direcao_aposta
+        DECIMAL odd_final
+        DECIMAL stake_dinheiro
+        DECIMAL stake_unidades
+        DECIMAL unidade_valor
+        BOOLEAN eh_freebet
+        DECIMAL valor_freebet
+        ENUM resultado
+        DECIMAL retorno_dinheiro
+        DECIMAL lucro_unidades
+        DECIMAL comissao_valor
+        TEXT observacoes_gerais
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    selecoes_apostas {
+        UUID id PK
+        UUID aposta_id FK
+        UUID categoria_id FK
+        UUID mercado_id FK
+        UUID campeonato_id FK
+        VARCHAR nome_evento
+        TIMESTAMP data_evento
+        ENUM modalidade_aposta
+        ENUM periodo_aposta
+        VARCHAR linha_aposta
+        DECIMAL odd
+        DECIMAL odd_fechamento
+        ENUM resultado_selecao
+        TEXT observacoes
+        VARCHAR referencia_imagem
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    tags {
+        UUID id PK
+        UUID usuario_id FK
+        VARCHAR nome
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    apostas_tags {
+        UUID aposta_id FK
+        UUID tag_id FK
+    }
+
+    saidas_apostas {
+        UUID id PK
+        UUID aposta_id FK
+        ENUM tipo_saida
+        DECIMAL valor_saida
+        DECIMAL percentual_saida
+        DECIMAL stake_restante
+        TIMESTAMP data_saida
+        TEXT observacoes
+        TIMESTAMP criado_em
+    }
+
+    transacoes {
+        UUID id PK
+        UUID usuario_id FK
+        UUID casa_aposta_id FK
+        UUID aposta_id FK
+        UUID saida_aposta_id FK
+        ENUM tipo_transacao
+        DECIMAL valor
+        TEXT descricao
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    assinatura_usuarios {
+        UUID id PK
+        UUID usuario_id FK
+        VARCHAR plano_id
+        DATE data_inicio
+        DATE data_fim
+        BOOLEAN eh_ativo
+        TIMESTAMP criado_em
+        TIMESTAMP atualizado_em
+    }
+
+    %% Relacionamentos
+    usuarios ||--o{ casas_apostas : "possui"
+    usuarios ||--o{ tipsters : "gerencia"
+    usuarios ||--o{ tags : "cria"
+    usuarios ||--o{ apostas : "registra"
+    usuarios ||--o{ transacoes : "realiza"
+    usuarios ||--o{ assinatura_usuarios : "possui"
+
+    paises ||--o{ campeonatos : "hospeda"
+    
+    categorias ||--o{ mercados : "contem"
+    categorias ||--o{ campeonatos : "classifica"
+    categorias ||--o{ selecoes_apostas : "categoriza"
+    
+    campeonatos ||--o{ selecoes_apostas : "organiza"
+    mercados ||--o{ selecoes_apostas : "define"
+    
+    tipsters ||--o{ historico_tipster_config : "historico"
+    tipsters ||--o{ apostas : "recomenda"
+    
+    casas_apostas ||--o{ apostas : "financia"
+    casas_apostas ||--o{ transacoes : "movimenta"
+
+    apostas ||--o{ saidas_apostas : "possui"
+    apostas ||--o{ selecoes_apostas : "contem"
+    apostas ||--o{ apostas_tags : "possui"
+    apostas ||--o{ transacoes : "gera"
+    
+    saidas_apostas ||--o{ transacoes : "registra"
+    tags ||--o{ apostas_tags : "classifica"

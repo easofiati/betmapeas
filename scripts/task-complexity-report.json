@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "generatedAt": "2025-06-10T14:32:06.881Z",
+    "tasksAnalyzed": 10,
+    "thresholdScore": 5,
+    "projectName": "Your Project Name",
+    "usedResearch": false
+  },
+  "complexityAnalysis": [
+    {
+      "taskId": 1,
+      "taskTitle": "Project Setup and Infrastructure",
+      "complexityScore": 7,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "Break down the Project Setup and Infrastructure task into 6 subtasks, focusing on Docker configuration, service setup, development environment, CI/CD pipeline, logging system, and database backup strategy. For each subtask, provide specific technical requirements and acceptance criteria.",
+      "reasoning": "This task involves multiple technologies (Docker, FastAPI, React, PostgreSQL, Nginx) and requires setting up the entire infrastructure. The complexity comes from ensuring all components work together correctly, configuring multi-stage builds, and implementing proper logging and backup systems."
+    },
+    {
+      "taskId": 2,
+      "taskTitle": "Authentication System with Row Level Security",
+      "complexityScore": 8,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Divide the Authentication System with Row Level Security task into 5 subtasks covering user model creation, JWT implementation, PostgreSQL Row Level Security configuration, frontend authentication flow, and security testing. Include specific technical details for each subtask.",
+      "reasoning": "This task has high complexity due to security implications. Implementing JWT with refresh tokens requires careful handling of token storage, expiration, and refresh logic. PostgreSQL Row Level Security adds another layer of complexity, requiring deep database knowledge. The frontend authentication flow must be robust and handle various edge cases."
+    },
+    {
+      "taskId": 3,
+      "taskTitle": "Core Data Models and Database Schema",
+      "complexityScore": 8,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "Break down the Core Data Models and Database Schema task into 6 subtasks covering user models, betting-related models, relationship definitions, database triggers, migration system, and index optimization. For each subtask, specify the entities involved and their relationships.",
+      "reasoning": "This task involves designing and implementing a complex database schema with multiple interrelated entities. The requirement for UUID primary keys, PostgreSQL enums, automatic timestamps via triggers, and proper indexing adds significant complexity. The migration system is also critical for future database changes."
+    },
+    {
+      "taskId": 4,
+      "taskTitle": "Bookmaker Management System",
+      "complexityScore": 6,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Divide the Bookmaker Management System task into 4 subtasks focusing on API endpoint development, bookmaker type implementation, balance tracking system, and frontend interface. For each subtask, detail the specific functionality and data requirements.",
+      "reasoning": "This task involves standard CRUD operations but with added complexity for tracking balances and handling different bookmaker types. The commission calculation for exchange bookmakers and transaction history tracking add moderate complexity."
+    },
+    {
+      "taskId": 5,
+      "taskTitle": "Basic Betting System",
+      "complexityScore": 7,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Break down the Basic Betting System task into 5 subtasks covering bet creation API, status workflow implementation, profit/loss calculation, frontend forms, and data export functionality. For each subtask, specify the technical requirements and user interactions.",
+      "reasoning": "This task forms the core functionality of the application with multiple states and calculations. The bet status workflow and automatic profit/loss calculations require careful implementation. The image upload functionality for bet proof adds additional complexity."
+    },
+    {
+      "taskId": 6,
+      "taskTitle": "Context Management for Bets",
+      "complexityScore": 6,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Divide the Context Management for Bets task into 4 subtasks covering data model creation, API endpoint development, frontend component implementation, and administrative interfaces. For each subtask, detail the hierarchical relationships and user interactions.",
+      "reasoning": "This task involves creating a hierarchical system for categories, markets, and championships. The complexity comes from managing these relationships and providing intuitive interfaces for selection. The search and filtering functionality adds moderate complexity."
+    },
+    {
+      "taskId": 7,
+      "taskTitle": "Advanced Betting Features",
+      "complexityScore": 9,
+      "recommendedSubtasks": 7,
+      "expansionPrompt": "Break down the Advanced Betting Features task into 7 subtasks covering multiple bet support, freebet implementation, exchange betting, exit strategies, frontend wizard, timeline visualization, and automatic boost detection. For each subtask, provide detailed technical requirements and calculation methods.",
+      "reasoning": "This is one of the most complex tasks, involving sophisticated betting concepts like multiple bets, freebets, exchange betting with back/lay options, and multiple exit strategies. Each feature requires specific calculation logic and careful UI implementation. The timeline visualization adds significant frontend complexity."
+    },
+    {
+      "taskId": 8,
+      "taskTitle": "Tipster Management System",
+      "complexityScore": 7,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Divide the Tipster Management System task into 5 subtasks covering data model creation, subscription tracking, ROI calculation, frontend interfaces, and historical performance analysis. For each subtask, detail the specific metrics and tracking requirements.",
+      "reasoning": "This task involves tracking tipster performance over time with subscription costs factored into ROI calculations. The historical tracking of monthly changes and net ROI calculations add significant complexity. The frontend must present this data in an intuitive way."
+    },
+    {
+      "taskId": 9,
+      "taskTitle": "Dashboard and Analytics",
+      "complexityScore": 8,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "Break down the Dashboard and Analytics task into 6 subtasks covering API endpoint development for analytics, ROI calculation by dimensions, performance comparison features, interactive charts, filtering system, and pattern detection. For each subtask, specify the data aggregation methods and visualization techniques.",
+      "reasoning": "This task requires complex data aggregation and analysis across multiple dimensions. The interactive charts and filtering capabilities add frontend complexity. The pattern detection for betting performance requires sophisticated algorithms. The exportable reports feature adds additional complexity."
+    },
+    {
+      "taskId": 10,
+      "taskTitle": "UI/UX Polish and Mobile Optimization",
+      "complexityScore": 7,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Divide the UI/UX Polish and Mobile Optimization task into 5 subtasks covering responsive design implementation, form wizard optimization, timeline visualization, progressive web app setup, and performance optimization. For each subtask, detail the specific user experience improvements and technical requirements.",
+      "reasoning": "This task involves significant frontend work to ensure a polished, responsive user experience. The mobile-first approach requires careful design considerations. The progressive web app capabilities, optimized form wizards, and visual timeline add considerable complexity. Performance optimization for mobile devices is particularly challenging."
+    }
+  ]
+}

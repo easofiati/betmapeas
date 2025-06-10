@@ -1,0 +1,45 @@
+uv init {nome-projeto}
+uv python install 3.13
+uv python pin 3.13
+uv venv 
+
+Claude ou GPT
+1. Ter clareza de todas as funcionalidades, o que cada tipo de usuário pode fazer na plataforma.
+
+Gostaria de criar uma plataforma para registro de apostas esportivas, onde cada usuário possa cadatras e ver somentes as suas próprias apostas.
+
+Descreva as funcionalidades necessárias para esse tipo de produto  e o que seria necessário em termos de acesso. O que cada tipo de acesso pode fazer.
+
+
+2. Pedir para separar  o projeto de forma mais lógica para a execução (começa com login).
+
+Como você implementaria um plano, step by step, dividindo bem o projeto, para implementar tudo que tem no .md
+
+
+Gerar um PRD (Product Requirements Document)
+
+DBExpert ou Claude ou GPT
+3. Gere a modelagem de banco de dados para essa aplicação descrita a seguir, sendo que o banco que utilizaremos será um PostgreSQL. Outro ponto importante gere o nome dos campos, tabelas, comentários, tudo em português do Brasil. A modelagem incluí os scripts e o MER.
+{inserir o conteúdo completo do item 2}
+
+Gere agora uma documentação completa de todas as possibilidades e cenários que essa modelagem completa pode atender, isso iremos utilizar para dar conhecimento para todos os desenvolvedores e também para elaborarmos todos os casos de uso de testes.
+
+
+Lovable, Firebase, Bolt, Genspark, Manus
+4. Criar a landing page com design que irá manter em toda a plataforma.
+{inserir o conteúdo completo do item 2}
+
+Sempre separar em vários arquivos, que é melhorar para trabalhar, nesse caso o Lovable faz isso muito bem.
+
+Cursor (fazer rules no Claude ou Chatgpt)
+6. Add rules
+
+Cursor
+5. task-master init
+5.1 - Baseado no arquivo @PRD.txt peça para o task-master gerar as tarefas.
+5.2 - Peça ao task-master para gerar as subtarefas de cada tarefa, analizar a complexidade e ordená-las.
+
+
+
+
+
