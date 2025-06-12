@@ -1,4 +1,5 @@
 import { useState, ReactNode, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -15,6 +16,17 @@ export function SimpleModal({ children, defaultTab = 'login' }: SimpleModalProps
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<'login' | 'register' | 'forgot'>(defaultTab);
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
   
   // Login state
   const [loginData, setLoginData] = useState({ email: '', password: '' });
@@ -441,14 +453,11 @@ export function SimpleModal({ children, defaultTab = 'login' }: SimpleModalProps
     );
   }
 
-  return (
+  const modalContent = (
     <div
       style={{
         position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100vw',
-        height: '100vh',
+        inset: 0,
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
         zIndex: '999999',
         display: 'flex',
@@ -518,4 +527,6 @@ export function SimpleModal({ children, defaultTab = 'login' }: SimpleModalProps
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }
