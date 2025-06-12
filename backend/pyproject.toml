@@ -1,7 +1,23 @@
 [project]
 name = "betmapeas"
 version = "0.1.0"
-description = "Add your description here"
+description = "BetMapEAS - Sistema de Gerenciamento de Apostas"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "fastapi>=0.68.0",
+    "uvicorn[standard]>=0.15.0",
+    "sqlalchemy>=1.4.0",
+    "psycopg2-binary>=2.9.0",
+    "asyncpg>=0.25.0",
+    "passlib[bcrypt]>=1.7.4",
+    "bcrypt>=4.0.1",
+    "python-jose[cryptography]>=3.3.0",
+    "PyJWT>=2.0.0",
+    "python-multipart>=0.0.5",
+    "python-dotenv>=0.19.0",
+    "alembic>=1.7.0",
+    "pydantic>=1.8.0",
+    "pydantic-settings>=2.0.0",
+    "email-validator>=1.1.3"
+]

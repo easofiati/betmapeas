@@ -3,7 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BarChart3, Shield, TrendingUp, Users, Eye, Clock, Calendar, ArrowRight, UserPlus, Target, BarChart, Trophy, Heart, Lightbulb, PieChart, Settings, Database } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { SimpleModal } from "@/components/SimpleModal";
 
 const Index = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -101,6 +104,16 @@ const Index = () => {
     }
   ];
 
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // Redireciona para o dashboard se já estiver autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard');
+    }
+  }, [isAuthenticated, navigate]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Navigation */}
@@ -112,10 +125,22 @@ const Index = () => {
             </div>
             <span className="text-xl font-bold text-white">BetMapEAS</span>
           </div>
-          <div className="hidden md:flex items-center space-x-8">
-            <Button variant="outline" className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white bg-blue-500/10">
-              Login
-            </Button>
+          <div className="hidden md:flex items-center space-x-3">
+            <SimpleModal defaultTab="login">
+              <Button 
+                variant="ghost" 
+                className="text-slate-300 hover:text-white hover:bg-slate-800"
+              >
+                Entrar
+              </Button>
+            </SimpleModal>
+            <SimpleModal defaultTab="register">
+              <Button 
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                Criar Conta
+              </Button>
+            </SimpleModal>
           </div>
         </div>
       </nav>
@@ -137,10 +162,24 @@ const Index = () => {
             Tome decisões baseadas em dados e maximize seus resultados.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg group">
-              Começar Gratuitamente
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
+            <SimpleModal defaultTab="register">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg group shadow-lg"
+              >
+                Começar Gratuitamente
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </SimpleModal>
+            <SimpleModal defaultTab="login">
+              <Button 
+                variant="ghost" 
+                size="lg" 
+                className="text-slate-300 hover:text-white hover:bg-slate-800/50 px-8 py-4 text-lg border border-slate-600 hover:border-slate-500"
+              >
+                Já tenho conta
+              </Button>
+            </SimpleModal>
           </div>
         </div>
       </section>

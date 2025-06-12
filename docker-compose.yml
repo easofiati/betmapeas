@@ -6,13 +6,17 @@ services:
       context: ./backend
     volumes:
       - ./backend:/app
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    env_file:
+      - ./backend/.env
     environment:
       - PYTHONUNBUFFERED=1
-      - DATABASE_URL=${DATABASE_URL}
-      - SECRET_KEY=${SECRET_KEY}
-      - DEBUG=${DEBUG}
+      - PYTHONPATH=/app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - betmapnet
 
@@ -58,6 +62,11 @@ services:
       - ./backend/betmapeas_database_schema.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - betmapnet
 
@@ -99,9 +108,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - pgbackups:/backups
-    entrypoint: ["/bin/sh", "-c"]
-    command: |
-      "echo '0 3 * * * pg_dump -U $POSTGRES_USER -h db $POSTGRES_DB | gzip > /backups/backup-$(date +\%Y-\%m-\%d).sql.gz' > /etc/crontabs/root && crond -f -L /dev/stdout"
+    command: >
+      sh -c "echo '0 3 * * * pg_dump -U $$POSTGRES_USER -h db $$POSTGRES_DB | gzip > /backups/backup-$$(date +\%Y-\%m-\%d).sql.gz' > /etc/crontabs/root && crond -f -L /dev/stdout"
     networks:
       - betmapnet
 

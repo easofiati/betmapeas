@@ -1,0 +1,12 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Transparent background -->
+  <rect width="64" height="64" rx="16" fill="none"/>
+  <!-- Chart bars -->
+  <rect x="16" y="36" width="6" height="12" rx="2" fill="#36A2EB"/>
+  <rect x="28" y="28" width="6" height="20" rx="2" fill="#4BC0C0"/>
+  <rect x="40" y="20" width="6" height="28" rx="2" fill="#FFCE56"/>
+  <!-- Sports element: simple ball (circle with lines) -->
+  <circle cx="48" cy="48" r="8" fill="#fff" stroke="#36A2EB" stroke-width="2"/>
+  <path d="M41.5 44.5a8 8 0 0 1 13 3.5" stroke="#4BC0C0" stroke-width="1.5" fill="none"/>
+  <path d="M47 40a8 8 0 0 1 0 16" stroke="#FFCE56" stroke-width="1.5" fill="none"/>
+</svg>

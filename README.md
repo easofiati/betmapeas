@@ -160,3 +160,15 @@ A pasta `.docker/pgadmin` garante persistência das configurações do pgAdmin.
 - O Nginx faz proxy para o backend em `/api` e serve o frontend estático nas demais rotas.
 
 ---
+
+## 📝 Logging estruturado no backend
+
+O backend FastAPI utiliza logging em JSON, facilitando integração com sistemas de observabilidade e análise de logs. Todos os logs incluem nível, timestamp, nome do serviço e mensagem.
+
+## 💾 Backup automatizado do banco
+
+O serviço `db-backup` no docker-compose executa backups diários do PostgreSQL usando `pg_dump` e armazena os arquivos comprimidos em um volume dedicado (`pgbackups`). Os backups são realizados diariamente às 3h da manhã (UTC).
+
+Para restaurar um backup, basta copiar o arquivo desejado do volume e usar o comando `pg_restore` ou `psql`.
+
+---
