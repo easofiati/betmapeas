@@ -1,4 +1,5 @@
 import { useState, ReactNode, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -441,7 +442,7 @@ export function SimpleModal({ children, defaultTab = 'login' }: SimpleModalProps
     );
   }
 
-  return (
+  const modalContent = (
     <div
       style={{
         position: 'fixed',
@@ -518,4 +519,6 @@ export function SimpleModal({ children, defaultTab = 'login' }: SimpleModalProps
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 }
