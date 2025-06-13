@@ -146,8 +146,10 @@ export function UltimateAuthModal({ children, defaultTab = 'login' }: UltimateAu
     e.preventDefault();
     console.log('Login submitted:', loginData);
     try {
-      await login({ username: loginData.email, password: loginData.password });
-      handleClose();
+      const success = await login({ username: loginData.email, password: loginData.password });
+      if (success) {
+        handleClose();
+      }
     } catch (err) {
       console.error('Login error:', err);
     }
