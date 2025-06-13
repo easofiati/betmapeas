@@ -4,7 +4,7 @@ import { LoginCredentials } from '@/services/auth';
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: (credentials: LoginCredentials) => Promise<void>;
+  login: (credentials: LoginCredentials) => Promise<boolean>;
   logout: () => Promise<void>;
   loading: boolean;
   error: string | null;
@@ -25,15 +25,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     checkAuth();
   }, []);
 
-  const login = async (credentials: LoginCredentials) => {
+  const login = async (credentials: LoginCredentials): Promise<boolean> => {
     setLoading(true);
     setError(null);
     try {
       await authLogin(credentials);
       setAuthState(true);
+      return true;
     } catch (err) {
       setError('Falha no login. Verifique suas credenciais e tente novamente.');
-      throw err;
+      // console.error('Login failed in AuthContext:', err); // Opcional: log do erro original aqui, se necessário para depuração.
+      return false;
     } finally {
       setLoading(false);
     }

@@ -18,12 +18,13 @@ export function LoginDialog({ children }: LoginDialogProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await login({ username: email, password });
+    const success = await login({ username: email, password });
+    if (success) {
       setOpen(false);
-    } catch (err) {
-      // O erro já é tratado pelo AuthContext
-      console.error('Login error:', err);
+    } else {
+      // O erro é tratado e exibido pelo AuthContext,
+      // o diálogo permanece aberto para nova tentativa.
+      console.error('Login attempt failed in LoginDialog');
     }
   };
 

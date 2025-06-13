@@ -6,7 +6,7 @@ import { BarChart3, Shield, TrendingUp, Users, Eye, Clock, Calendar, ArrowRight,
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { SimpleModal } from "@/components/SimpleModal";
+import { EnhancedAuthModal } from "@/components/EnhancedAuthModal";
 
 const Index = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -126,21 +126,21 @@ const Index = () => {
             <span className="text-xl font-bold text-white">BetMapEAS</span>
           </div>
           <div className="hidden md:flex items-center space-x-3">
-            <SimpleModal defaultTab="login">
+            <EnhancedAuthModal defaultTab="login">
               <Button 
                 variant="ghost" 
                 className="text-slate-300 hover:text-white hover:bg-slate-800"
               >
                 Entrar
               </Button>
-            </SimpleModal>
-            <SimpleModal defaultTab="register">
+            </EnhancedAuthModal>
+            <EnhancedAuthModal defaultTab="register">
               <Button 
                 className="bg-blue-600 hover:bg-blue-700 text-white"
               >
                 Criar Conta
               </Button>
-            </SimpleModal>
+            </EnhancedAuthModal>
           </div>
         </div>
       </nav>
@@ -162,7 +162,7 @@ const Index = () => {
             Tome decisões baseadas em dados e maximize seus resultados.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <SimpleModal defaultTab="register">
+            <EnhancedAuthModal defaultTab="register">
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg group shadow-lg"
@@ -170,8 +170,8 @@ const Index = () => {
                 Começar Gratuitamente
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-            </SimpleModal>
-            <SimpleModal defaultTab="login">
+            </EnhancedAuthModal>
+            <EnhancedAuthModal defaultTab="login">
               <Button 
                 variant="ghost" 
                 size="lg" 
@@ -179,7 +179,7 @@ const Index = () => {
               >
                 Já tenho conta
               </Button>
-            </SimpleModal>
+            </EnhancedAuthModal>
           </div>
         </div>
       </section>
