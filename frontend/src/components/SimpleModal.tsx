@@ -74,8 +74,10 @@ export function SimpleModal({ children, defaultTab = 'login' }: SimpleModalProps
     e.preventDefault();
     console.log('SimpleModal: Login submitted:', loginData);
     try {
-      await login({ username: loginData.email, password: loginData.password });
-      handleClose();
+      const success = await login({ username: loginData.email, password: loginData.password });
+      if (success) {
+        handleClose();
+      }
     } catch (err) {
       console.error('SimpleModal: Login error:', err);
     }
